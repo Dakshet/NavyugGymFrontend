@@ -93,7 +93,7 @@ const Home = () => {
         }
 
 
-    }, [uPhoto, fName, email, mobileNo, address, dOB, age, bloodGroup, workoutTime, customBloodGroup, navigate]);
+    }, [uPhoto, fName, email, mobileNo, address, dOB, age, bloodGroup, workoutTime, customBloodGroup, navigate, host]);
 
 
     // const handleSubmitForm = (e) => {
