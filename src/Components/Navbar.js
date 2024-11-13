@@ -1,0 +1,82 @@
+import React, { useCallback, useEffect, useState } from 'react'
+import "./Navbar.css"
+import logo from '../Images/logo1.jpg'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import SearchBar from './SearchBar'
+
+const Navbar = () => {
+
+    const navigate = useNavigate();
+
+    const location = useLocation();
+
+    const [showSearch, setShowSearch] = useState("");
+
+    const [showSideBar, setShowSideBar] = useState(false);
+
+    const [showButtons, setShowButtons] = useState(false);
+
+    const handleLogout = useCallback(() => {
+        localStorage.removeItem("gymdata")
+        setShowButtons(false);
+        navigate('/admin')
+    }, [navigate])
+
+    useEffect(() => {
+        if (localStorage.getItem("gymdata")) {
+            setShowButtons(true);
+        }
+    }, [navigate])
+
+    return (
+        <div className='navbar'>
+            <Link to="/">
+                <div className="navbarLogo">
+                    <img src={logo} alt="" />
+                    <h2>Navyug Gym</h2>
+                </div>
+            </Link>
+            <div className={`${showSideBar ? "navbarMobileButtonx" : "navbarMobileButton"}`} onClick={() => setShowSideBar(false)}>
+                <div className='navbarButtons'>
+                    {/* <Link onClick={() => setShowSearch(!showSearch)} className={`${location.pathname === "/" ? "hideBtn" : ""}`}>
+                        <i className="ri-search-line hideMobileMenu"></i>
+                    </Link> */}
+                    <Link onClick={() => setShowSearch(!showSearch)} className={`${showButtons ? "" : "hideBtn"}`}>
+                        <i className="ri-search-line hideMobileMenu"></i>
+                    </Link>
+                    {/* <Link to="/admin/home" className={`${location.pathname === "/" ? "hideBtn" : ""}`}>
+                        <button>Home</button>
+                    </Link> */}
+                    <Link to="/admin/home" className={`${showButtons ? "" : "hideBtn"}`}>
+                        <button>Home</button>
+                    </Link>
+                    <Link to="/admin/add/panel" className={`${showButtons ? "" : "hideBtn"}`}>
+                        <button>Member Requests</button>
+                    </Link>
+                    <Link to="/admin/membership/panel" className={`${showButtons ? "" : "hideBtn"}`}>
+                        <button>Membership Status</button>
+                    </Link>
+                    <Link to="/admin/membership/end" className={`${showButtons ? "" : "hideBtn"}`}>
+                        <button>Subscription End</button>
+                    </Link>
+                    {showButtons ? <button onClick={handleLogout}>Logout</button> :
+                        <Link to="/admin" className={`${location.pathname === "/admin" ? "hideBtn" : ""}`}>
+                            <button>Admin</button>
+                        </Link>}
+                </div>
+            </div>
+            <div className="mobileMenuIcon">
+                <Link onClick={() => setShowSearch(!showSearch)} className={`${showButtons ? "" : "hideBtn"}`}>
+                    <i className="ri-search-line mobileSearchBar"></i>
+                </Link>
+                <i onClick={() => setShowSideBar(!showSideBar)} className="ri-menu-line mobileMenuBar"></i>
+            </div>
+
+            <SearchBar showSearch={showSearch} setShowSearch={setShowSearch} />
+
+            {/* Here we need to add frame for 650px like side bar is off when we click on anywhere on the screen */}
+        </div >
+    )
+}
+
+export default Navbar

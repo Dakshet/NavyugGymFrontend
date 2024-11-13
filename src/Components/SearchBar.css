@@ -1,0 +1,96 @@
+.searchBar {
+    width: 100%;
+    /* background-color: blue; */
+    margin-left: -1%;
+    position: fixed;
+    top: 97px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: moveDown 1s forwards;
+    opacity: 0;
+    z-index: 1;
+}
+
+@keyframes moveDown {
+    100% {
+        /* top: 120px; */
+        top: 125px;
+        opacity: 1;
+    }
+}
+
+
+.hideSearchBar {
+    display: none;
+}
+
+.searchBarInner form {
+    background-color: black;
+    border: 2px solid red;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.searchBarInner form input {
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    background-color: transparent;
+    width: 400px;
+    /* color: white; */
+    color: red;
+}
+
+.searchBarInner form input::placeholder {
+    /* color: white; */
+    color: red;
+}
+
+.searchBarInner form i {
+    padding: 12px;
+    cursor: pointer;
+    background-color: red;
+    /* margin-right: 10px; */
+    /* border: 1px solid black; */
+    border-radius: 50%;
+    /* color: white; */
+    color: black;
+}
+
+
+
+/* ----------- Media Queries */
+@media (max-width: 500px) {
+
+    .searchBar {
+        top: 80px;
+    }
+
+    @keyframes moveDown {
+        100% {
+            top: 90px;
+            opacity: 1;
+        }
+    }
+
+    .searchBarInner form input {
+        border: none;
+        outline: none;
+        padding: 10px 20px;
+        background-color: transparent;
+        width: 250px;
+        color: red;
+    }
+
+    .searchBarInner form i {
+        padding: 12px;
+        cursor: pointer;
+        background-color: red;
+        border-radius: 50%;
+        color: black;
+    }
+
+}
