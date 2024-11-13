@@ -6,6 +6,8 @@ import ConditionsModal from '../Components/ConditionsModal';
 const Home = () => {
     const navigate = useNavigate();
 
+    const host = process.env.REACT_APP_HOST_NAME;
+
     const [uPhoto, setUPhoto] = useState("");
     const [fName, setFName] = useState("");
     const [email, setEmail] = useState("");
@@ -63,7 +65,7 @@ const Home = () => {
         formData.append("workoutTime", workoutTime)
 
         try {
-            const response = await fetch("http://localhost:5000/user/signup", {
+            const response = await fetch(`${host}/user/signup`, {
                 method: "POST",
                 headers: {
                     "enctype": "multipart/form-data",

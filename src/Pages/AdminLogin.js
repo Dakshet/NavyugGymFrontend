@@ -6,6 +6,8 @@ const AdminLogin = () => {
 
     const navigate = useNavigate();
 
+    const host = process.env.REACT_APP_HOST_NAME;
+
     const [mobileNo, setMobileNo] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false); // State to handle loading animation
@@ -17,7 +19,7 @@ const AdminLogin = () => {
         setLoading(true); // Show loader when the request starts
 
         try {
-            const response = await fetch("http://localhost:5000/user/login/admin", {
+            const response = await fetch(`${host}/user/login/admin`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
