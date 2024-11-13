@@ -49,7 +49,7 @@ const AdminLogin = () => {
             console.error("Error", error.message);
         }
 
-    }, [mobileNo, password, navigate])
+    }, [mobileNo, password, navigate, host])
 
 
     // Title change
