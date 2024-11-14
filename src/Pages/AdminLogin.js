@@ -39,7 +39,8 @@ const AdminLogin = () => {
                     navigate("/admin/home")
                 }
                 else {
-                    alert(json.Error)
+                    alert(json.Error);
+                    navigate("/admin");
                 }
 
             }
