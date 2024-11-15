@@ -210,7 +210,7 @@ const GymState = (props) => {
             if (response.ok) {
                 const json = await response.json();
 
-                // console.log(json);
+                console.log("your json", json);
 
                 if (json.Data) {
                     alert(json.Data);
