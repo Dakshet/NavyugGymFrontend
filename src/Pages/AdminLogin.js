@@ -8,8 +8,6 @@ const AdminLogin = () => {
 
     const host = process.env.REACT_APP_HOST_NAME;
 
-    console.log(host);
-
     const [mobileNo, setMobileNo] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false); // State to handle loading animation

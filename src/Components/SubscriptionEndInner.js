@@ -31,11 +31,12 @@ const SubscriptionEndInner = ({ data }) => {
             return new Date(year, month - 1, day); // Month is zero-based in JavaScript's Date
         };
 
-        const date2 = parseDate(data[8]);
+        const date2 = parseDate(data[6]);
         const date1 = new Date();        //current Date
 
-        const dateDiffInMilliseconds = date2 - date1;
-        const dateDiffInDays = Math.ceil(dateDiffInMilliseconds / (1000 * 60 * 60 * 24));
+
+        const dateDiffInMilliseconds = date1 - date2;
+        const dateDiffInDays = Math.floor(dateDiffInMilliseconds / (1000 * 60 * 60 * 24));
 
         setDateDiff(dateDiffInDays);
 
@@ -49,13 +50,13 @@ const SubscriptionEndInner = ({ data }) => {
                 {/* <div className='deadlinePannelInner' > */}
                 <div className="subscriptionEndInnerBox">
                     <h5>Name: {data[0].toUpperCase()}</h5>
-                    <h6>Phone no: {data[2]}</h6>
+                    <h6>Phone no: +91 {data[2]}</h6>
                     <h6>Address: {data[3].split(" ").slice(0, wordCount).join(" ") + "..."}</h6>
                     <div>
-                        <h6>Membership Start: {data[6]}</h6>
-                        <h6>Membership End: {data[8]}</h6>
+                        <h6>Membership Start: {data[5]}</h6>
+                        <h6>Membership End: {data[6]}</h6>
                     </div>
-                    {dateDiff === 0 ? (<h6>Expires in: <span>Today is the last day.</span></h6>) : (<h6>Expires in: <span>{dateDiff} Day Left</span></h6>)}
+                    {dateDiff === 0 ? (<h6>Expires in: <span>Payment period of 15 days is over.</span></h6>) : (<h6>Expires in: <span>Fees are {dateDiff} days late.</span></h6>)}
                 </div>
             </div >
         </>

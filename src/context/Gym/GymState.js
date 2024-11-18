@@ -10,6 +10,7 @@ const GymState = (props) => {
     const [homeAdminData, setHomeAdminData] = useState([]);
     const [searchUser, setSearchUser] = useState([]);
     const [subscriptionEnd, setSubscriptionEnd] = useState([]);
+    const [imageBase64, setImageBase64] = useState(null);
     // const [noData, setNoData] = useState("")
 
     // Get fees pending data
@@ -39,19 +40,19 @@ const GymState = (props) => {
 
                 else {
                     console.log(json.Error);
-                    setPendingData([]);//Reset state when 'news' is missing
+                    setPendingData([]);//Reset state when 'pending data' is missing
                 }
             }
             else {
-                console.log(`Error fetching news: ${response.status} ${response.statusText}`)
+                console.log(`Error fetching pending data: ${response.status} ${response.statusText}`)
                 setPendingData([]);
             }
 
 
         } catch (error) {
             // Catch any network or unexpected errors
-            console.error("Error fetching the news:", error);
-            // setNews([]); // Optional: Reset state in case of network error
+            console.error("Error fetching the pending data:", error);
+            setPendingData([]);   // Optional: Reset state in case of network error
         }
     }
 
@@ -85,18 +86,18 @@ const GymState = (props) => {
 
                 else {
                     console.log(json.Error);
-                    setMembershipData([]);//Reset state when 'news' is missing
+                    setMembershipData([]);//Reset state when 'memberShip data' is missing
                 }
             }
             else {
-                console.log(`Error fetching news: ${response.status} ${response.statusText}`)
+                console.log(`Error fetching memberShip data: ${response.status} ${response.statusText}`)
                 setMembershipData([]);
             }
 
         } catch (error) {
             // Catch any network or unexpected errors
-            console.error("Error fetching the news:", error);
-            // setNews([]); // Optional: Reset state in case of network error
+            console.error("Error fetching the memberShip data:", error);
+            setMembershipData([]);  // Optional: Reset state in case of network error
         }
     }
 
@@ -125,18 +126,18 @@ const GymState = (props) => {
 
                 else {
                     console.log(json.Error);
-                    setHomeAdminData([]);//Reset state when 'news' is missing
+                    setHomeAdminData([]);//Reset state when 'home data' is missing
                 }
             }
             else {
-                console.log(`Error fetching news: ${response.status} ${response.statusText}`)
+                console.log(`Error fetching home data: ${response.status} ${response.statusText}`)
                 setHomeAdminData([]);
             }
 
         } catch (error) {
             // Catch any network or unexpected errors
-            console.error("Error fetching the news:", error);
-            // setNews([]); // Optional: Reset state in case of network error
+            console.error("Error fetching the home data:", error);
+            setHomeAdminData([]);  // Optional: Reset state in case of network error
         }
     }
 
@@ -170,18 +171,18 @@ const GymState = (props) => {
 
                 // else {
                 //     console.log(json.Error);
-                //     setSearchUser([]);//Reset state when 'news' is missing
+                //     setSearchUser([]);//Reset state when 'search user' is missing
                 // }
             }
             else {
-                console.log(`Error fetching news: ${response.status} ${response.statusText}`)
+                console.log(`Error fetching search user: ${response.status} ${response.statusText}`)
                 setSearchUser([]);
             }
 
         } catch (error) {
             // Catch any network or unexpected errors
-            console.error("Error fetching the news:", error);
-            // setNews([]); // Optional: Reset state in case of network error
+            console.error("Error fetching the search user:", error);
+            setSearchUser([]);   // Optional: Reset state in case of network error
         }
     }
 
@@ -189,7 +190,7 @@ const GymState = (props) => {
     // Get search user data
     const aceeptMemberRequest = async (id, amount, pStatus) => {
 
-        const acceptFeesArray = pendingData.filter((ids) => ids[5] !== id);
+        const acceptFeesArray = pendingData.filter((ids) => ids[4] !== id);
 
         setPendingData(acceptFeesArray);
         if (acceptFeesArray.length === 0) {
@@ -210,28 +211,22 @@ const GymState = (props) => {
             if (response.ok) {
                 const json = await response.json();
 
-                console.log("your json", json);
-
                 if (json.Data) {
                     alert(json.Data);
-                    // setSearchUser(json.Data);
-                    // console.log(json.Data);
                 }
 
                 else {
                     console.log(json.Error);
-                    // setSearchUser([]);//Reset state when 'news' is missing
                 }
             }
             else {
-                console.log(`Error fetching news: ${response.status} ${response.statusText}`)
-                // setSearchUser([]);
+                console.log(`Error fetching accept member request: ${response.status} ${response.statusText}`)
             }
 
         } catch (error) {
             // Catch any network or unexpected errors
-            console.error("Error fetching the news:", error);
-            // setNews([]); // Optional: Reset state in case of network error
+            console.error("Error fetching the accept member request:", error);
+
         }
     }
 
@@ -239,7 +234,7 @@ const GymState = (props) => {
     // Delete user data from the member request.
     const deleteMemberRequest = async (id) => {
 
-        const acceptFeesArray = pendingData.filter((ids) => ids[5] !== id);
+        const acceptFeesArray = pendingData.filter((ids) => ids[4] !== id);
         // console.log(acceptFeesArray);
 
         setPendingData(acceptFeesArray);
@@ -270,24 +265,23 @@ const GymState = (props) => {
 
                 else {
                     console.log(json.Error);
-                    // setSearchUser([]);//Reset state when 'news' is missing
+                    // setSearchUser([]);//Reset state when 'delete member request' is missing
                 }
             }
             else {
-                console.log(`Error fetching news: ${response.status} ${response.statusText}`)
+                console.log(`Error fetching delete member request: ${response.status} ${response.statusText}`)
                 // setSearchUser([]);
             }
 
         } catch (error) {
             // Catch any network or unexpected errors
-            console.error("Error fetching the news:", error);
-            // setNews([]); // Optional: Reset state in case of network error
+            console.error("Error fetching the delete member request:", error);
         }
     }
 
 
     // Fetch subscription end data
-    const fetchSubscriptionEndUserData = async (search) => {
+    const fetchSubscriptionEndUserData = async () => {
 
         try {
             const response = await fetch(`${host}/user/admin/feesend`, {
@@ -316,23 +310,61 @@ const GymState = (props) => {
 
                 else {
                     console.log(json.Error);
-                    setSubscriptionEnd([]);//Reset state when 'news' is missing
+                    setSubscriptionEnd([]);//Reset state when 'fetch subscription data' is missing
                 }
             }
             else {
-                console.log(`Error fetching news: ${response.status} ${response.statusText}`)
+                console.log(`Error fetching fetch subscription data: ${response.status} ${response.statusText}`)
                 setSubscriptionEnd([]);
             }
 
         } catch (error) {
             // Catch any network or unexpected errors
-            console.error("Error fetching the news:", error);
-            // setNews([]); // Optional: Reset state in case of network error
+            console.error("Error fetching the fetch subscription data:", error);
+            setSubscriptionEnd([]);    // Optional: Reset state in case of network error
         }
     }
 
+
+
+    // Fetch subscription end data
+    const fetchUserImage = async (id) => {
+
+        setImageBase64("")
+
+        try {
+            const response = await fetch(`${host}/user/admin/fetchimage/${id}`, {
+                method: "GET"
+            })
+
+            if (response.ok) {
+                const json = await response.json();
+
+
+                if (json.success) {
+                    setImageBase64(json.imageLink); // Update with the key that contains base64 string
+                }
+
+                else {
+                    console.log(json.Error);
+                    setImageBase64("");//Reset state when 'fetch user image' is missing
+                }
+            }
+            else {
+                console.log(`Error fetching image: ${response.status} ${response.statusText}`)
+                setImageBase64("");
+            }
+
+        } catch (error) {
+            // Catch any network or unexpected errors
+            console.error("Error fetching the image:", error);
+            setImageBase64([]);
+        }
+    }
+
+
     return (
-        <GymContext.Provider value={{ pendingData, fetchFeesPendingData, membershipData, fetchMembershipStatusUserData, homeAdminData, fetchHomeAdminData, searchUser, fetchSearchUser, aceeptMemberRequest, deleteMemberRequest, subscriptionEnd, fetchSubscriptionEndUserData }}>
+        <GymContext.Provider value={{ pendingData, fetchFeesPendingData, membershipData, fetchMembershipStatusUserData, homeAdminData, fetchHomeAdminData, searchUser, fetchSearchUser, aceeptMemberRequest, deleteMemberRequest, subscriptionEnd, fetchSubscriptionEndUserData, imageBase64, fetchUserImage }}>
             {props.children}
         </GymContext.Provider>
     )

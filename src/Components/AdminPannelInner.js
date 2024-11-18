@@ -29,7 +29,7 @@ const AdminPannelInner = ({ data }) => {
     // Handle Submit Data
     const handleSubmitData = useCallback((e) => {
         e.preventDefault();
-        aceeptMemberRequest(data[5], amount, pStatus)
+        aceeptMemberRequest(data[4], amount, pStatus)
         setAmount("")
         setPStatus("")
 
@@ -38,7 +38,7 @@ const AdminPannelInner = ({ data }) => {
 
     // Handle Delete Data
     const handleDeleteData = useCallback(() => {
-        deleteMemberRequest(data[5])
+        deleteMemberRequest(data[4])
     }, [deleteMemberRequest, data])
 
 
@@ -50,7 +50,7 @@ const AdminPannelInner = ({ data }) => {
                 <div className="adminPannelInnerBox">
                     {/* <img src="https://img.freepik.com/premium-photo/personal-fitness-avatar-realistic-white-background-style-raw-stylize-750-job-id-ee19bd69c40a4dd58c8b_343960-70963.jpg" alt="" /> */}
                     <h5 onClick={() => setOpenAddPanelUserInfo(true)}>Name: {data[0].toUpperCase()}</h5>
-                    <h6 onClick={() => setOpenAddPanelUserInfo(true)}>Phone no: {data[2]}</h6>
+                    <h6 onClick={() => setOpenAddPanelUserInfo(true)}>Phone no: +91 {data[2]}</h6>
                     <h6 onClick={() => setOpenAddPanelUserInfo(true)}>Address: {data[3].split(" ").slice(0, wordCount).join(" ") + "..."}</h6>
 
                     <form action="" onSubmit={handleSubmitData}>
@@ -72,7 +72,7 @@ const AdminPannelInner = ({ data }) => {
                                 </select>
                             </div>
                         </div>
-                        <p>Application Date: {data[6]}</p>
+                        <p>Application Date: {data[5]}</p>
                         <div className='addFormBtn'>
                             <button type='button' onClick={handleDeleteData}>Delete</button>
                             <button type='submit' >Submit</button>

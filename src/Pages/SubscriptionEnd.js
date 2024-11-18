@@ -53,7 +53,7 @@ const SubscriptionEnd = () => {
     }
 
 
-    console.log(subscriptionEnd)
+    // console.log(subscriptionEnd)
     return (
         <div className='subscriptionEnd'>
             <h1>Membership End Dashboard ({subscriptionEnd === 1 ? "0" : subscriptionEnd.length})</h1>

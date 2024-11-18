@@ -120,6 +120,17 @@
 
 /* -------------- Media Queries */
 
+@media (max-width:1335px) {
+
+    .adminPannelInnerBox form .addFormBtn {
+        top: 55px;
+    }
+
+    .adminPannelInnerBox form .addFormBtn button {
+        margin: 20.5px 10px;
+    }
+}
+
 @media (max-width:1125px) {
     .adminPanel h1 {
         font-size: 30px;
@@ -198,5 +209,6 @@
 
     .adminPannelInnerBox form .addFormBtn button {
         padding: 10px 20px;
+        margin: 10px 10px;
     }
 }
