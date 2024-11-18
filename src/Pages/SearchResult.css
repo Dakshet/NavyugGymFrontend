@@ -107,6 +107,16 @@
         width: 100%;
         margin: 20px 0px 20px;
     }
+
+
+    .searchResultInnerBox h5 {
+        font-size: 17px;
+    }
+
+    .searchResultInnerBox h6 {
+        font-size: 15px;
+    }
+
 }
 
 
