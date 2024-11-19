@@ -105,7 +105,7 @@ const Home = () => {
 
     // Title change
     useEffect(() => {
-        document.title = "Navyug Gym - Login Form";  // Set the document title to the news title
+        document.title = "Navyug Gym - Form";  // Set the document title to the news title
     }, []);
 
     return (
