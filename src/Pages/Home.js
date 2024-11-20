@@ -67,9 +67,6 @@ const Home = () => {
         try {
             const response = await fetch(`${host}/user/signup`, {
                 method: "POST",
-                headers: {
-                    "enctype": "multipart/form-data",
-                },
                 body: (formData)
             })
 
