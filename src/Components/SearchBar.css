@@ -55,7 +55,7 @@
     cursor: pointer;
     /* background-color: red; */
     /* margin-right: 10px; */
-    border: 1px solid red;
+    border: 2px solid red;
     color: white;
     border-radius: 50%;
     /* color: white; */
@@ -90,7 +90,6 @@
         padding: 12px;
         cursor: pointer;
         background-color: transparent;
-        border: 1px solid red;
         color: white;
         border-radius: 50%;
     }
