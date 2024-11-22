@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import "./Navbar.css"
 import logo from '../Images/logo1.jpg'
+import gymLogo from '../Images/gymlogo1.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import SearchBar from './SearchBar'
 
@@ -33,7 +34,8 @@ const Navbar = () => {
             <Link to="/">
                 <div className="navbarLogo">
                     <img src={logo} alt="" />
-                    <h2>Navyug Gym</h2>
+                    {/* <h2>Navyug Gym</h2> */}
+                    <img src={gymLogo} id='gymlogo' alt="" />
                 </div>
             </Link>
             <div className={`${showSideBar ? "navbarMobileButtonx" : "navbarMobileButton"}`} onClick={() => setShowSideBar(false)}>

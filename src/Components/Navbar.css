@@ -20,15 +20,21 @@
     justify-content: center;
 }
 
+.navbarLogo #gymlogo {
+    width: 420px;
+    height: 58px;
+    border-radius: 0px;
+}
+
 .navbar img {
     width: 100px;
     border-radius: 50%;
-    margin-right: 30px;
+    margin-right: 10px;
 }
 
 .navbar h2 {
     font-size: 45px;
-    color: red;
+    color: white;
     font-family: "Rubik Wet Paint", system-ui;
     font-weight: 400;
     letter-spacing: 3px;
@@ -36,10 +42,11 @@
 }
 
 button {
-    background-color: red;
+    /* background-color: rgb(228, 11, 11); */
     border: none;
     outline: none;
-    color: black;
+    color: white;
+    background-color: transparent;
     padding: 10px 20px;
     border-radius: 30px;
     font-size: 15px;
@@ -48,14 +55,16 @@ button {
     transition: 0.5s;
     margin-top: 10px;
     margin-left: 20px;
+    border: 2px solid red;
 }
 
 .navbarButtons i {
-    color: black;
+    color: white;
     margin-left: 20px;
     padding: 10px 10px;
-    background-color: red;
+    background-color: transparent;
     border-radius: 50%;
+    border: 2px solid red;
 }
 
 
@@ -134,11 +143,20 @@ button {
 
     .mobileMenuIcon i {
         margin-left: 20px;
-        color: black;
-        background-color: red;
+        color: white;
+        background-color: transparent;
         padding: 10px;
         border-radius: 50%;
+        border: 2px solid red;
     }
+
+
+    .navbarLogo #gymlogo {
+        width: 420px;
+        height: 55px;
+    }
+
+
 }
 
 
@@ -153,6 +171,11 @@ button {
 
     button {
         margin-top: 10px;
+    }
+
+    .navbarLogo #gymlogo {
+        width: 300px;
+        height: 38px;
     }
 }
 
@@ -176,6 +199,11 @@ button {
 
     .mobileMenuIcon {
         margin-right: 2%;
+    }
+
+    .navbarLogo #gymlogo {
+        width: 280px;
+        height: 35px;
     }
 
 }
@@ -210,7 +238,10 @@ button {
         margin-left: 10px;
     }
 
-
+    .navbarLogo #gymlogo {
+        width: 230px;
+        height: 30px;
+    }
 }
 
 @media (max-width:385px) {
@@ -236,6 +267,12 @@ button {
 
     .mobileMenuIcon i {
         margin-left: 10px;
+    }
+
+
+    .navbarLogo #gymlogo {
+        width: 200px;
+        height: 25px;
     }
 }
 

@@ -1,8 +1,8 @@
 .footer {
     background-color: black;
-    color: red;
+    color: white;
     width: 100%;
-    padding: 30px 12%;
+    padding: 30px 8%;
 }
 
 .footerPanel {
@@ -15,8 +15,7 @@
 .footerPanelLeft {
     display: flex;
     flex-wrap: wrap;
-    /* background-color: blue; */
-    /* width: 500px; */
+    text-align: center;
 }
 
 .footerPanelLeft div {
@@ -75,6 +74,14 @@
 }
 
 
+.footerLogo #footerGymlogo {
+    width: 308px;
+    height: 43px;
+    border-radius: 0px;
+}
+
+
+
 
 /* ------ Media Queries */
 
@@ -104,6 +111,14 @@
     }
 }
 
+@media (max-width:500px) {
+
+    .footerLogo #footerGymlogo {
+        width: 180px;
+        height: 30px;
+    }
+}
+
 @media (max-width: 380px) {
     .footerLogo img {
         margin-right: 0px;
@@ -120,5 +135,11 @@
 
     .footerLogo h2 {
         margin-left: -0px;
+    }
+
+    .footerLogo #footerGymlogo {
+        width: 180px;
+        height: 27px;
+        margin-left: 5px;
     }
 }

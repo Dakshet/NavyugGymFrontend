@@ -5,7 +5,6 @@ import ConditionsModal from '../Components/ConditionsModal';
 
 const Home = () => {
     const navigate = useNavigate();
-
     const host = process.env.REACT_APP_HOST_NAME;
 
     const [uPhoto, setUPhoto] = useState("");
@@ -28,21 +27,47 @@ const Home = () => {
     }
 
 
+    // const uploadImage = useCallback((event) => {
+    //     const validImageTypes = ["image/jpeg", "image/jpg"];
+
+    //     try {
+    //         if (validImageTypes.includes(event.target.files[0].type)) {
+    //             setUPhoto(event.target.files[0])
+    //         }
+    //         else {
+    //             alert("Enter image in correct format!");
+    //         }
+
+    //     } catch (error) {
+    //         console.log("Error", error)
+    //     }
+    // }, [])
+
     const uploadImage = useCallback((event) => {
         const validImageTypes = ["image/jpeg", "image/jpg"];
+        const maxFileSize = 5 * 1024 * 1024; // 5 MB in bytes
 
         try {
-            if (validImageTypes.includes(event.target.files[0].type)) {
-                setUPhoto(event.target.files[0])
-            }
-            else {
-                alert("Enter image in correct format!");
+            const file = event.target.files[0];
+
+            if (!file) return; // No file selected
+
+            if (!validImageTypes.includes(file.type)) {
+                alert("Please upload an image in JPG or JPEG format.");
+                return;
             }
 
+            if (file.size > maxFileSize) {
+                alert("File size should not exceed 5 MB.");
+                return;
+            }
+
+            setUPhoto(file); // Accept the image
         } catch (error) {
-            console.log("Error", error)
+            console.error("Error uploading image:", error);
         }
-    }, [])
+    }, []);
+
 
 
     const handleSubmitForm = useCallback(async (e) => {
@@ -93,16 +118,9 @@ const Home = () => {
     }, [uPhoto, fName, email, mobileNo, address, dOB, age, bloodGroup, workoutTime, customBloodGroup, navigate, host]);
 
 
-    // const handleSubmitForm = (e) => {
-    //     e.preventDefault();
-
-    //     navigate("/home")
-    // }
-
-
     // Title change
     useEffect(() => {
-        document.title = "Navyug Gym - Form";  // Set the document title to the news title
+        document.title = "Navyug Gym - Login Form";  // Set the document title to the news title
     }, []);
 
     return (
@@ -117,7 +135,9 @@ const Home = () => {
                             <div className="wavex"></div>
                         </div>
                         <div className="handle">
-                            <p>Navyug Gym</p>
+                            <div className="wavexy">
+                                <p>Navyug Gym</p>
+                            </div>
                         </div>
                         <div className="weight">
                             <div className="wavex"></div>
@@ -128,6 +148,7 @@ const Home = () => {
                     </div>
                 </div >) : (
                 <>
+
                     <div className='hero'>
                         <div className="heroForm">
                             <form action="" onSubmit={handleSubmitForm}>
@@ -190,7 +211,8 @@ const Home = () => {
                         </div>
                     </div>
                     <ConditionsModal conditionModal={conditionModal} setConditionModal={setConditionModal} />
-                </>)}
+                </>)
+            }
         </>
     )
 }
