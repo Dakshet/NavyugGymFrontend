@@ -28,7 +28,7 @@ const AdminHome = () => {
 
     if (!homeAdminData || homeAdminData.length === 0) {
         return (
-            <div className="dumbbell-container">
+            <div className="dumbbell-container" >
                 <div className="dumbbell">
                     <div className="weightScrew" id='leftSide'>
                         <div className="wavex"></div>
@@ -37,7 +37,9 @@ const AdminHome = () => {
                         <div className="wavex"></div>
                     </div>
                     <div className="handle">
-                        <p>Navyug Gym</p>
+                        <div className="wavexy">
+                            <p>Navyug Gym</p>
+                        </div>
                     </div>
                     <div className="weight">
                         <div className="wavex"></div>
@@ -46,7 +48,7 @@ const AdminHome = () => {
                         <div className="wavex"></div>
                     </div>
                 </div>
-            </div>
+            </div >
         )
         // Handle case when news is not yet available
     }
