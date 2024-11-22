@@ -41,12 +41,12 @@
     background-color: transparent;
     width: 400px;
     /* color: white; */
-    color: red;
+    color: white;
 }
 
 .searchBarInner form input::placeholder {
     /* color: white; */
-    color: red;
+    color: white;
 }
 
 .searchBarInner form i {

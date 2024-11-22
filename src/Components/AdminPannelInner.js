@@ -74,8 +74,8 @@ const AdminPannelInner = ({ data }) => {
                         </div>
                         <p>Application Date: {data[5]}</p>
                         <div className='addFormBtn'>
-                            <button type='button' onClick={handleDeleteData}>Delete</button>
-                            <button type='submit' >Submit</button>
+                            <button type='button' className='adminPannelBtn' onClick={handleDeleteData}>Delete</button>
+                            <button type='submit' className='adminPannelBtn' >Submit</button>
                         </div>
                     </form>
                 </div >
