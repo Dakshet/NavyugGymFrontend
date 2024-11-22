@@ -59,7 +59,6 @@
     color: white;
     border-radius: 50%;
     /* color: white; */
-    color: black;
 }
 
 
@@ -84,15 +83,16 @@
         padding: 10px 20px;
         background-color: transparent;
         width: 250px;
-        color: red;
+        color: white;
     }
 
     .searchBarInner form i {
         padding: 12px;
         cursor: pointer;
-        background-color: red;
+        background-color: transparent;
+        border: 1px solid red;
+        color: white;
         border-radius: 50%;
-        color: black;
     }
 
 }
