@@ -212,13 +212,12 @@
 
 
     .adminPannelInnerBox form .addFormBtn {
-        top: 108px;
+        top: 100px;
         right: 20px;
     }
 
 
     .addFormBtn .adminPannelBtn {
         padding: 10px 20px;
-        /* margin: 7px 10px; */
     }
 }
