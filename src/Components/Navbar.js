@@ -58,6 +58,9 @@ const Navbar = () => {
                     <Link to="/admin/membership/data" className={`${showButtons ? "" : "hideBtn"}`}>
                         <button>Members Data</button>
                     </Link>
+                    <Link to="/admin/membership/panel" className={`${showButtons ? "" : "hideBtn"}`}>
+                        <button>Membership Status</button>
+                    </Link>
                     <Link to="/admin/membership/end" className={`${showButtons ? "" : "hideBtn"}`}>
                         <button>Subscription End</button>
                     </Link>
