@@ -53,10 +53,10 @@ const Navbar = () => {
                         <button>Home</button>
                     </Link>
                     <Link to="/admin/add/panel" className={`${showButtons ? "" : "hideBtn"}`}>
-                        <button>Member Requests</button>
+                        <button>Membership Requests</button>
                     </Link>
-                    <Link to="/admin/membership/panel" className={`${showButtons ? "" : "hideBtn"}`}>
-                        <button>Membership Status</button>
+                    <Link to="/admin/membership/data" className={`${showButtons ? "" : "hideBtn"}`}>
+                        <button>Members Data</button>
                     </Link>
                     <Link to="/admin/membership/end" className={`${showButtons ? "" : "hideBtn"}`}>
                         <button>Subscription End</button>
@@ -71,7 +71,9 @@ const Navbar = () => {
                 <Link onClick={() => setShowSearch(!showSearch)} className={`${showButtons ? "" : "hideBtn"}`}>
                     <i className="ri-search-line mobileSearchBar"></i>
                 </Link>
-                <i onClick={() => setShowSideBar(!showSideBar)} className="ri-menu-line mobileMenuBar"></i>
+                {/* <i onClick={() => setShowSideBar(!showSideBar)} className="ri-menu-line mobileMenuBar"></i> */}
+                <i onClick={() => setShowSideBar(true)} className={`ri-menu-line mobileMenuBar ${showSideBar ? "hideBtn" : ""}`}></i>
+                <i onClick={() => setShowSideBar(false)} className={`ri-close-line mobileMenuBar ${showSideBar ? "" : "hideBtn"}`}></i>
             </div>
 
             <SearchBar showSearch={showSearch} setShowSearch={setShowSearch} />

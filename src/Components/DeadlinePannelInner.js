@@ -6,7 +6,7 @@ import DeadlinePannelModal from './DeadlinePannelModal';
 const DeadlinePannelInner = ({ data }) => {
 
     const [openDeadlinePannelInfo, setOpenDeadlinePannelInfo] = useState("");
-    const [dateDiff, setDateDiff] = useState("");
+    const [dateDiff, setDateDiff] = useState("1");
 
 
     //Responsiveness

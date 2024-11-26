@@ -17,6 +17,7 @@ import SearchResult from './Pages/SearchResult';
 import SubscriptionEnd from './Pages/SubscriptionEnd';
 import Footer from './Components/Footer';
 import ScrollToTop from './Components/ScrollToTop';
+import MembersData from './Pages/MembersData';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path='/admin' element={<AdminLogin />} />
             <Route path='/admin/home' element={<AdminHome />} />
             <Route path='/admin/add/panel' element={<AdminPannel />} />
+            <Route path='/admin/membership/data' element={<MembersData />} />
             <Route path='/admin/membership/panel' element={<DeadlinePannel />} />
             <Route path='/admin/search/result' element={<SearchResult />} />
             <Route path='/admin/membership/end' element={<SubscriptionEnd />} />

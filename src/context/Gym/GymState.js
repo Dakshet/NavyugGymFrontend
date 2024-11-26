@@ -11,6 +11,7 @@ const GymState = (props) => {
     const [searchUser, setSearchUser] = useState([]);
     const [subscriptionEnd, setSubscriptionEnd] = useState([]);
     const [imageBase64, setImageBase64] = useState(null);
+    const [monthwiseData, setMonthwiseData] = useState([]);
     // const [noData, setNoData] = useState("")
 
     // Get fees pending data
@@ -363,8 +364,56 @@ const GymState = (props) => {
     }
 
 
+
+    // Get fees pending data
+    const fetchDataMonthWise = async (monthNumber) => {
+
+        // console.log(monthNumber)
+
+        try {
+            const response = await fetch(`${host}/user/admin/fetchmonthwise/${monthNumber}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth_token": localStorage.getItem("gymdata")
+                    // "auth_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiODEwNDEzMDE3NiJ9LCJpYXQiOjE3MzA5MDM0MjN9.Af9xlNcXZfd7k2Ycdao3M8FoEnfKcv3plTHwCV_jPgI"
+                }
+            })
+
+            if (response.ok) {
+                const json = await response.json();
+
+                // console.log(json);
+
+                if (json.Data) {
+                    if (json.Data.length === 0) {
+                        setMonthwiseData(1);
+                    }
+                    else {
+                        setMonthwiseData(json.Data);
+                    }
+                }
+
+                else {
+                    console.log(json.Error);
+                    setMonthwiseData([]);//Reset state when 'memberShip data' is missing
+                }
+            }
+            else {
+                console.log(`Error fetching memberShip data: ${response.status} ${response.statusText}`)
+                setMonthwiseData([]);
+            }
+
+        } catch (error) {
+            // Catch any network or unexpected errors
+            console.error("Error fetching the memberShip data:", error);
+            setMonthwiseData([]);  // Optional: Reset state in case of network error
+        }
+    }
+
+
     return (
-        <GymContext.Provider value={{ pendingData, fetchFeesPendingData, membershipData, fetchMembershipStatusUserData, homeAdminData, fetchHomeAdminData, searchUser, fetchSearchUser, aceeptMemberRequest, deleteMemberRequest, subscriptionEnd, fetchSubscriptionEndUserData, imageBase64, fetchUserImage }}>
+        <GymContext.Provider value={{ pendingData, fetchFeesPendingData, membershipData, fetchMembershipStatusUserData, homeAdminData, fetchHomeAdminData, searchUser, fetchSearchUser, aceeptMemberRequest, deleteMemberRequest, subscriptionEnd, fetchSubscriptionEndUserData, imageBase64, fetchUserImage, monthwiseData, fetchDataMonthWise }}>
             {props.children}
         </GymContext.Provider>
     )
