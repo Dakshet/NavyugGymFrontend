@@ -86,13 +86,20 @@ const GymState = (props) => {
                 }
 
                 else {
-                    console.log(json.Error);
+                    // console.log(json.Error);
                     setMembershipData([]);//Reset state when 'memberShip data' is missing
                 }
             }
             else {
-                console.log(`Error fetching memberShip data: ${response.status} ${response.statusText}`)
-                setMembershipData([]);
+                if (response.status === 400) {
+                    alert("Expired token. Please log in again.")
+                    setMembershipData(0);
+                    localStorage.removeItem("gymdata")
+                }
+                else {
+                    console.log(`Error fetching memberShip data: ${response.status} ${response.statusText}`)
+                    setMembershipData([]);
+                }
             }
 
         } catch (error) {
@@ -413,7 +420,7 @@ const GymState = (props) => {
 
 
     return (
-        <GymContext.Provider value={{ pendingData, fetchFeesPendingData, membershipData, fetchMembershipStatusUserData, homeAdminData, fetchHomeAdminData, searchUser, fetchSearchUser, aceeptMemberRequest, deleteMemberRequest, subscriptionEnd, fetchSubscriptionEndUserData, imageBase64, fetchUserImage, monthwiseData, fetchDataMonthWise }}>
+        <GymContext.Provider value={{ pendingData, fetchFeesPendingData, membershipData, setMembershipData, fetchMembershipStatusUserData, homeAdminData, fetchHomeAdminData, searchUser, fetchSearchUser, aceeptMemberRequest, deleteMemberRequest, subscriptionEnd, fetchSubscriptionEndUserData, imageBase64, fetchUserImage, monthwiseData, fetchDataMonthWise }}>
             {props.children}
         </GymContext.Provider>
     )

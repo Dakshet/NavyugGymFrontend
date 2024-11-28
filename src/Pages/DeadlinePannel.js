@@ -8,7 +8,7 @@ const DeadlinePannel = () => {
 
     const navigate = useNavigate();
 
-    const { membershipData, fetchMembershipStatusUserData } = useContext(GymContext)
+    const { membershipData, setMembershipData, fetchMembershipStatusUserData } = useContext(GymContext)
 
     useEffect(() => {
         if (localStorage.getItem("gymdata")) {
@@ -19,6 +19,15 @@ const DeadlinePannel = () => {
         }
         // eslint-disable-next-line
     }, [])
+
+
+    useEffect(() => {
+        if (membershipData === 0) {
+            navigate("/admin")
+            setMembershipData(1)
+        }
+    }, [membershipData, navigate, setMembershipData])
+
 
     // Title change
     useEffect(() => {

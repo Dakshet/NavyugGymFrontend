@@ -19,9 +19,17 @@ const Navbar = () => {
 
     const handleLogout = useCallback(() => {
         localStorage.removeItem("gymdata")
-        setShowButtons(false);
+        // setShowButtons(false);
         navigate('/admin')
     }, [navigate])
+
+
+    useEffect(() => {
+        if (location.pathname === "/admin") {
+            setShowButtons(false);
+        }
+    }, [location])
+
 
     useEffect(() => {
         if (localStorage.getItem("gymdata")) {
