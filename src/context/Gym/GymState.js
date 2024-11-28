@@ -353,22 +353,22 @@ const GymState = (props) => {
                     }
                     // console.log(json.Data);
                 }
-
                 else {
-                    if (response.status === 400) {
-                        alert("Expired token. Please log in again.")
-                        setSubscriptionEnd(0);
-                        localStorage.removeItem("gymdata")
-                    }
-                    else {
-                        console.log(`Error fetching fetch subscription data: ${response.status} ${response.statusText}`)
-                        setSubscriptionEnd([]);
-                    }
+                    console.log(json.Error);
+                    setMonthwiseData([]);//Reset state when 'memberShip data' is missing
                 }
+
             }
             else {
-                console.log(`Error fetching fetch subscription data: ${response.status} ${response.statusText}`)
-                setSubscriptionEnd([]);
+                if (response.status === 400) {
+                    alert("Expired token. Please log in again.")
+                    setSubscriptionEnd(0);
+                    localStorage.removeItem("gymdata")
+                }
+                else {
+                    console.log(`Error fetching fetch subscription data: ${response.status} ${response.statusText}`)
+                    setSubscriptionEnd([]);
+                }
             }
 
         } catch (error) {
