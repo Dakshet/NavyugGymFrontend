@@ -8,7 +8,7 @@ const SubscriptionEnd = () => {
 
     const navigate = useNavigate();
 
-    const { subscriptionEnd, fetchSubscriptionEndUserData } = useContext(GymContext);
+    const { subscriptionEnd, setSubscriptionEnd, fetchSubscriptionEndUserData } = useContext(GymContext);
 
     useEffect(() => {
         if (localStorage.getItem("gymdata")) {
@@ -19,6 +19,15 @@ const SubscriptionEnd = () => {
         }
         // eslint-disable-next-line 
     }, [])
+
+
+    useEffect(() => {
+        if (subscriptionEnd === 0) {
+            navigate("/admin")
+            setSubscriptionEnd(1)
+
+        }
+    }, [subscriptionEnd, navigate, setSubscriptionEnd])
 
 
     // Title change

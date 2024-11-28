@@ -45,8 +45,15 @@ const GymState = (props) => {
                 }
             }
             else {
-                console.log(`Error fetching pending data: ${response.status} ${response.statusText}`)
-                setPendingData([]);
+                if (response.status === 400) {
+                    alert("Expired token. Please log in again.")
+                    setPendingData(0);
+                    localStorage.removeItem("gymdata")
+                }
+                else {
+                    console.log(`Error fetching pending data: ${response.status} ${response.statusText}`)
+                    setPendingData([]);
+                }
             }
 
 
@@ -128,8 +135,12 @@ const GymState = (props) => {
                 // console.log(json);
 
                 if (json.Data) {
-                    setHomeAdminData(json.Data);
-                    // console.log(json.Data);
+                    if (json.Data.length === 0) {
+                        setHomeAdminData(1);
+                    }
+                    else {
+                        setHomeAdminData(json.Data);
+                    }
                 }
 
                 else {
@@ -138,8 +149,15 @@ const GymState = (props) => {
                 }
             }
             else {
-                console.log(`Error fetching home data: ${response.status} ${response.statusText}`)
-                setHomeAdminData([]);
+                if (response.status === 400) {
+                    alert("Expired token. Please log in again.")
+                    setHomeAdminData(0);
+                    localStorage.removeItem("gymdata")
+                }
+                else {
+                    console.log(`Error fetching home data: ${response.status} ${response.statusText}`)
+                    setHomeAdminData([]);
+                }
             }
 
         } catch (error) {
@@ -183,8 +201,15 @@ const GymState = (props) => {
                 // }
             }
             else {
-                console.log(`Error fetching search user: ${response.status} ${response.statusText}`)
-                setSearchUser([]);
+                if (response.status === 400) {
+                    alert("Expired token. Please log in again.")
+                    setSearchUser(0);
+                    localStorage.removeItem("gymdata")
+                }
+                else {
+                    console.log(`Error fetching search user: ${response.status} ${response.statusText}`)
+                    setSearchUser([]);
+                }
             }
 
         } catch (error) {
@@ -228,7 +253,14 @@ const GymState = (props) => {
                 }
             }
             else {
-                console.log(`Error fetching accept member request: ${response.status} ${response.statusText}`)
+                if (response.status === 400) {
+                    alert("Expired token. Please log in again.")
+                    localStorage.removeItem("gymdata")
+                    setPendingData(0)
+                }
+                else {
+                    console.log(`Error fetching accept member request: ${response.status} ${response.statusText}`)
+                }
             }
 
         } catch (error) {
@@ -277,8 +309,14 @@ const GymState = (props) => {
                 }
             }
             else {
-                console.log(`Error fetching delete member request: ${response.status} ${response.statusText}`)
-                // setSearchUser([]);
+                if (response.status === 400) {
+                    alert("Expired token. Please log in again.")
+                    localStorage.removeItem("gymdata")
+                    setPendingData(0)
+                }
+                else {
+                    console.log(`Error fetching delete member request: ${response.status} ${response.statusText}`)
+                }
             }
 
         } catch (error) {
@@ -317,8 +355,15 @@ const GymState = (props) => {
                 }
 
                 else {
-                    console.log(json.Error);
-                    setSubscriptionEnd([]);//Reset state when 'fetch subscription data' is missing
+                    if (response.status === 400) {
+                        alert("Expired token. Please log in again.")
+                        setSubscriptionEnd(0);
+                        localStorage.removeItem("gymdata")
+                    }
+                    else {
+                        console.log(`Error fetching fetch subscription data: ${response.status} ${response.statusText}`)
+                        setSubscriptionEnd([]);
+                    }
                 }
             }
             else {
@@ -407,8 +452,15 @@ const GymState = (props) => {
                 }
             }
             else {
-                console.log(`Error fetching memberShip data: ${response.status} ${response.statusText}`)
-                setMonthwiseData([]);
+                if (response.status === 400) {
+                    alert("Expired token. Please log in again.")
+                    setMonthwiseData(0);
+                    localStorage.removeItem("gymdata")
+                }
+                else {
+                    console.log(`Error fetching memberShip data: ${response.status} ${response.statusText}`)
+                    setMonthwiseData([]);
+                }
             }
 
         } catch (error) {
@@ -420,7 +472,7 @@ const GymState = (props) => {
 
 
     return (
-        <GymContext.Provider value={{ pendingData, fetchFeesPendingData, membershipData, setMembershipData, fetchMembershipStatusUserData, homeAdminData, fetchHomeAdminData, searchUser, fetchSearchUser, aceeptMemberRequest, deleteMemberRequest, subscriptionEnd, fetchSubscriptionEndUserData, imageBase64, fetchUserImage, monthwiseData, fetchDataMonthWise }}>
+        <GymContext.Provider value={{ pendingData, setPendingData, fetchFeesPendingData, membershipData, setMembershipData, fetchMembershipStatusUserData, homeAdminData, setHomeAdminData, fetchHomeAdminData, searchUser, setSearchUser, fetchSearchUser, aceeptMemberRequest, deleteMemberRequest, subscriptionEnd, setSubscriptionEnd, fetchSubscriptionEndUserData, imageBase64, fetchUserImage, monthwiseData, setMonthwiseData, fetchDataMonthWise }}>
             {props.children}
         </GymContext.Provider>
     )

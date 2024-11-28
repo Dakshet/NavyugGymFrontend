@@ -7,7 +7,7 @@ const AdminHome = () => {
 
     const navigate = useNavigate();
 
-    const { homeAdminData, fetchHomeAdminData } = useContext(GymContext);
+    const { homeAdminData, setHomeAdminData, fetchHomeAdminData } = useContext(GymContext);
 
     useEffect(() => {
         if (localStorage.getItem("gymdata")) {
@@ -18,6 +18,14 @@ const AdminHome = () => {
         }
         // eslint-disable-next-line
     }, [])
+
+
+    useEffect(() => {
+        if (homeAdminData === 0) {
+            navigate("/admin")
+            setHomeAdminData(1)
+        }
+    }, [homeAdminData, navigate, setHomeAdminData])
 
 
     // Title change

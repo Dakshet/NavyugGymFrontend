@@ -3,8 +3,11 @@ import "../Pages/AdminPannel.css"
 import { useMediaQuery } from 'react-responsive';
 import AdminPannelModal from './AdminPannelModal';
 import GymContext from '../context/Gym/GymContext';
+import { useNavigate } from 'react-router-dom';
 
-const AdminPannelInner = ({ data }) => {
+const AdminPannelInner = ({ data, pendingData, setPendingData }) => {
+
+    const navigate = useNavigate();
 
     const [amount, setAmount] = useState("");
     const [pStatus, setPStatus] = useState("");
@@ -28,18 +31,30 @@ const AdminPannelInner = ({ data }) => {
 
     // Handle Submit Data
     const handleSubmitData = useCallback((e) => {
-        e.preventDefault();
-        aceeptMemberRequest(data[4], amount, pStatus)
-        setAmount("")
-        setPStatus("")
+        if (pendingData === 0) {
+            navigate("/admin")
+            setPendingData(1)
+        }
+        else {
+            e.preventDefault();
+            aceeptMemberRequest(data[4], amount, pStatus)
+            setAmount("")
+            setPStatus("")
+        }
 
-    }, [aceeptMemberRequest, data, amount, pStatus])
+    }, [aceeptMemberRequest, data, amount, pStatus, pendingData, setPendingData, navigate])
 
 
     // Handle Delete Data
     const handleDeleteData = useCallback(() => {
-        deleteMemberRequest(data[4])
-    }, [deleteMemberRequest, data])
+        if (pendingData === 0) {
+            navigate("/admin")
+            setPendingData(1)
+        }
+        else {
+            deleteMemberRequest(data[4])
+        }
+    }, [deleteMemberRequest, data, setPendingData, pendingData, navigate])
 
 
 

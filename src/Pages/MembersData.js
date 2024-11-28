@@ -8,7 +8,7 @@ const MembersData = () => {
 
     const navigate = useNavigate();
 
-    const { monthwiseData, fetchDataMonthWise } = useContext(GymContext)
+    const { monthwiseData, setMonthwiseData, fetchDataMonthWise } = useContext(GymContext)
     const [monthNumber, setMonthNumber] = useState("1")
 
     useEffect(() => {
@@ -20,6 +20,15 @@ const MembersData = () => {
         }
         // eslint-disable-next-line
     }, [monthNumber])
+
+
+    useEffect(() => {
+        if (monthwiseData === 0) {
+            navigate("/admin")
+            setMonthwiseData(1)
+        }
+    }, [monthwiseData, navigate, setMonthwiseData])
+
 
     // Title change
     useEffect(() => {

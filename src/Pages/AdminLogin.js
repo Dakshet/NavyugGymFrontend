@@ -44,8 +44,14 @@ const AdminLogin = () => {
                 }
 
             }
-
-
+            else {
+                if (response.status === 400) {
+                    alert("Incorrect User Number or Password. Please try again.");
+                }
+                else {
+                    console.log(`Error fetching memberShip data: ${response.status} ${response.statusText}`)
+                }
+            }
         } catch (error) {
             console.error("Error", error.message);
         }

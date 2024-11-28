@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 const AdminPannel = () => {
     const navigate = useNavigate();
 
-    const { pendingData, fetchFeesPendingData } = useContext(GymContext)
+    const { pendingData, setPendingData, fetchFeesPendingData } = useContext(GymContext)
 
     useEffect(() => {
         if (localStorage.getItem("gymdata")) {
@@ -19,6 +19,15 @@ const AdminPannel = () => {
         }
         // eslint-disable-next-line
     }, [])
+
+    useEffect(() => {
+        if (pendingData === 0) {
+            navigate("/admin")
+            setPendingData(1)
+
+        }
+    }, [pendingData, navigate, setPendingData])
+
 
 
     // Title change
@@ -62,7 +71,7 @@ const AdminPannel = () => {
             {pendingData === 1 ? (<p className='emptyParaMsg'>You're up to date! No new requests.</p>) :
                 <div className="adminPanelBox">
                     {pendingData.map((data, index) => {
-                        return <AdminPannelInner key={index} data={data} />
+                        return <AdminPannelInner key={index} data={data} pendingData={pendingData} setPendingData={setPendingData} />
                     })}
                 </div>}
         </div>

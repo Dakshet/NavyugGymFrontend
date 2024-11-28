@@ -2,10 +2,21 @@ import React, { useContext, useEffect } from 'react'
 import GymContext from '../context/Gym/GymContext'
 import SearchResultInner from '../Components/SearchResultInner';
 import "./SearchResult.css"
+import { useNavigate } from 'react-router-dom';
 
 const SearchResult = () => {
 
-    const { searchUser } = useContext(GymContext);
+    const navigate = useNavigate();
+    const { searchUser, setSearchUser } = useContext(GymContext);
+
+
+    useEffect(() => {
+        if (searchUser === 0) {
+            navigate("/admin")
+            setSearchUser(1)
+
+        }
+    }, [searchUser, navigate, setSearchUser])
 
 
     // Title change
