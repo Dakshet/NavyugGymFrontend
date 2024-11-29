@@ -33,8 +33,14 @@ const SearchResultInner = ({ data }) => {
 
         const date2 = parseDate(data[6]);
         const date1 = new Date();        //current Date
+        let dateDiffInMilliseconds;
 
-        const dateDiffInMilliseconds = date2 - date1;
+        if (date2 > date1) {
+            dateDiffInMilliseconds = date2 - date1;
+        }
+        else {
+            dateDiffInMilliseconds = date1 - date2;
+        }
         const dateDiffInDays = Math.floor(dateDiffInMilliseconds / (1000 * 60 * 60 * 24));
 
         setDateDiff(dateDiffInDays);
