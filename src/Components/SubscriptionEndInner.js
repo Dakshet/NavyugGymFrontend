@@ -56,7 +56,7 @@ const SubscriptionEndInner = ({ data }) => {
                         <h6>Membership Start: {data[5]}</h6>
                         <h6>Membership End: {data[6]}</h6>
                     </div>
-                    {dateDiff === 0 ? (<h6>Expires in: <span>Payment period of 15 days is over.</span></h6>) : (<h6>Expires in: <span>Fees are {dateDiff} days late.</span></h6>)}
+                    {dateDiff === 15 ? (<h6>Expires in: <span>Payment period of 15 days is over.</span></h6>) : (<h6>Expires in: <span>Fees are {dateDiff} days late.</span></h6>)}
                 </div>
             </div >
         </>

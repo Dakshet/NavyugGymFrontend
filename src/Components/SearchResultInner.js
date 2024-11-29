@@ -8,6 +8,7 @@ const SearchResultInner = ({ data }) => {
 
     const [openSearchBarModal, setOpenSearchBarModal] = useState("");
     const [dateDiff, setDateDiff] = useState("");
+    const [expires, setExpires] = useState("");
 
 
     //Responsiveness
@@ -33,17 +34,18 @@ const SearchResultInner = ({ data }) => {
 
         const date2 = parseDate(data[6]);
         const date1 = new Date();        //current Date
-        let dateDiffInMilliseconds;
 
-        if (date2 > date1) {
-            dateDiffInMilliseconds = date2 - date1;
+        const dateDiffInMilliseconds = date2 - date1;
+        const dateDiffInDays = Math.floor(dateDiffInMilliseconds / (1000 * 60 * 60 * 24)) + 1;
+
+        if (dateDiffInDays < 0) {
+            setExpires(1);
+            setDateDiff(-1 * dateDiffInDays);
         }
         else {
-            dateDiffInMilliseconds = date1 - date2;
+            setExpires(0);
+            setDateDiff(dateDiffInDays);
         }
-        const dateDiffInDays = Math.floor(dateDiffInMilliseconds / (1000 * 60 * 60 * 24));
-
-        setDateDiff(dateDiffInDays);
 
     }, [data])
 
@@ -60,7 +62,7 @@ const SearchResultInner = ({ data }) => {
                         <h6>Membership Start: {data[5]}</h6>
                         <h6>Membership End: {data[6]}</h6>
                     </div>
-                    {dateDiff === 0 ? (<h6>Expires in: <span>Today is the last day.</span></h6>) : (<h6>Expires in: <span>{dateDiff} Days Left</span></h6>)}
+                    {expires === 1 ? (dateDiff === 15 ? (<h6>Expires in: <span>Payment period of 15 days is over.</span></h6>) : (<h6>Expires in: <span>Fees are {dateDiff} days late.</span></h6>)) : (dateDiff === 0 ? (<h6>Expires in: <span>Today is the last day.</span></h6>) : (<h6>Expires in: <span>{dateDiff} Days Left</span></h6>))}
                 </div>
             </div>
         </>
