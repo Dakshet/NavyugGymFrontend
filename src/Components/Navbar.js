@@ -73,7 +73,7 @@ const Navbar = () => {
                         <button>Subscription End</button>
                     </Link>
                     {showButtons ? <button onClick={handleLogout}>Logout</button> :
-                        <Link to="/admin" className={`${location.pathname === "/admin" ? "hideBtn" : ""}`}>
+                        <Link to="/admin" className={`${location.pathname === "/admin" ? "hideBtn" : "hideBtn"}`}>
                             <button>Admin</button>
                         </Link>}
                 </div>
@@ -83,8 +83,8 @@ const Navbar = () => {
                     <i className="ri-search-line mobileSearchBar"></i>
                 </Link>
                 {/* <i onClick={() => setShowSideBar(!showSideBar)} className="ri-menu-line mobileMenuBar"></i> */}
-                <i onClick={() => setShowSideBar(true)} className={`ri-menu-line mobileMenuBar ${showSideBar ? "hideBtn" : ""}`}></i>
-                <i onClick={() => setShowSideBar(false)} className={`ri-close-line mobileMenuBar ${showSideBar ? "" : "hideBtn"}`}></i>
+                <i onClick={() => setShowSideBar(true)} className={`ri-menu-line mobileMenuBar ${showSideBar ? "hideBtn" : "hideBtn"}`}></i>
+                <i onClick={() => setShowSideBar(false)} className={`ri-close-line mobileMenuBar ${showSideBar ? "hideBtn" : "hideBtn"}`}></i>
             </div>
 
             <SearchBar showSearch={showSearch} setShowSearch={setShowSearch} />

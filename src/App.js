@@ -18,6 +18,7 @@ import SubscriptionEnd from './Pages/SubscriptionEnd';
 import Footer from './Components/Footer';
 import ScrollToTop from './Components/ScrollToTop';
 import MembersData from './Pages/MembersData';
+import TestingPage from './Pages/TestingPage';
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
           <ScrollToTop />
           <Routes>
 
-            <Route path='/' element={<Home />} />
+            {/* <Route path='/' element={<Home />} />
             <Route path='/user/home' element={<Waiting />} />
             <Route path='/admin' element={<AdminLogin />} />
             <Route path='/admin/home' element={<AdminHome />} />
@@ -36,7 +37,9 @@ function App() {
             <Route path='/admin/membership/data' element={<MembersData />} />
             <Route path='/admin/membership/panel' element={<DeadlinePannel />} />
             <Route path='/admin/search/result' element={<SearchResult />} />
-            <Route path='/admin/membership/end' element={<SubscriptionEnd />} />
+            <Route path='/admin/membership/end' element={<SubscriptionEnd />} /> */}
+
+            <Route path='/' element={<TestingPage />} />
           </Routes>
         </Router>
         <Footer />
