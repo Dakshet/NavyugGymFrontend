@@ -79,7 +79,7 @@ const Navbar = () => {
                 </div>
             </div>
             <div className="mobileMenuIcon">
-                <Link onClick={() => setShowSearch(!showSearch)} className={`${showButtons ? "" : "hideBtn"}`}>
+                <Link onClick={() => setShowSearch(!showSearch)} className={`${showButtons ? "hideBtn" : "hideBtn"}`}>
                     <i className="ri-search-line mobileSearchBar"></i>
                 </Link>
                 {/* <i onClick={() => setShowSideBar(!showSideBar)} className="ri-menu-line mobileMenuBar"></i> */}
